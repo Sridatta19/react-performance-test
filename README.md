@@ -1,4 +1,4 @@
-This is just a little sandbox for me to play with React + Angular together.
+This is just a little sandbox for me to play with React.
 
 To run the demo:
 

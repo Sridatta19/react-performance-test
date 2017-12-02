@@ -5,17 +5,18 @@
     "dev": "webpack-dev-server --progress --colors --port 8080"
   },
   "dependencies": {
-    "angular": "^1.4.0-beta.5",
+    "classnames": "^2.2.5",
     "events": "^1.0.2",
-    "lodash": "^3.4.0",
-    "react": "^0.12.2"
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "css-loader": "^0.9.1",
-    "jsx-loader": "^0.12.2",
-    "style-loader": "^0.8.3",
-    "webpack": "^1.6.0",
-    "webpack-dev-server": "^1.7.0"
+    "css-loader": "^0.28.7",
+    "jsx-loader": "^0.13.2",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.5"
   },
   "author": "Dave Smith",
   "license": "ISC"
