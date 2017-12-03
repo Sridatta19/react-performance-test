@@ -1,16 +1,27 @@
 require('./style.css');
 
 const _ = require('lodash');
-const EventEmitter = require('events');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const classNames = require('classnames');
 
-var DAYS = _.range(1, 32).map((day) => ("Oct " + day));
+const DAYS = _.range(1, 32).map((day) => ("Oct " + day));
 
-var randomMilliseconds = function() {
+function randomMilliseconds () {
   return Math.floor(Math.random() * 500);
 }
+
+const service = {
+  cells: [],
+  addCell(cell) {
+    this.cells.push(cell);
+  },
+  searchAllCells() {
+    for (let i = 0; i < this.cells.length; i++) {
+      this.cells[i].search();
+    }
+  }
+};
 
 class Cell extends React.Component {
 
@@ -18,13 +29,14 @@ class Cell extends React.Component {
     super(props);
 
     this.search = this.search.bind(this);
-    this.componentWillMount = this.componentWillMount.bind(this);
     this.clicked = this.clicked.bind(this);
 
     this.state = {
       isSearching: false,
       searchResults: null
     };
+
+    service.addCell(this);
   }
 
   render() {
@@ -81,10 +93,6 @@ class Cell extends React.Component {
       });
     }, randomMilliseconds());
   }
-
-  componentWillMount() {
-    this.props.events.on('search', () => this.search());
-  }
 }
 
 class Calendar extends React.Component {
@@ -92,7 +100,6 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.componentWillMount = this.componentWillMount.bind(this);
     this.load = this.load.bind(this);
     this.searchAll = this.searchAll.bind(this);
 
@@ -130,17 +137,12 @@ class Calendar extends React.Component {
     );
   }
 
-  componentWillMount() {
-    this.events = new EventEmitter();
-    this.events.setMaxListeners(0);
-  }
-
   load() {
     this.setState({isLoaded: true});
   }
 
-  searchAll(args) {
-    this.events.emit('search');
+  searchAll() {
+    service.searchAllCells();
   }
 }
 
