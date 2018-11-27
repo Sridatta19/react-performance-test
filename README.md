@@ -1,6 +1,8 @@
-This project is a fork of mikpetr's [performance test](https://github.com/mikpetr/react-performance-test) which was retrofitted to bootstrap with [Create React App](https://github.com/facebook/create-react-app).
+This project is a fork of mikpetr's [performance test](https://github.com/mikpetr/react-performance-test) and this is retrofitted to bootstrap with [Create React App](https://github.com/facebook/create-react-app).
 
-It is currently deployed [here](https://sridatta19.github.io/react-performance-test/)
+It is currently deployed [HERE](https://sridatta19.github.io/react-performance-test/)
+
+A suspensified version of the same setup is deployed on now.sh [HERE](https://react-performance-oelbnxlebj.now.sh). It has significant initial load time (probably due to cache layer) but is extremely fast (~ 150ms) on subsequent renders.
 
 ## Available Scripts
 
