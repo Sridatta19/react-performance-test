@@ -1,0 +1,107 @@
+
+html {
+  font-family: 'Allerta Stencil', sans-serif;
+  box-sizing: border-box;
+  color: #FFF;
+  font-weight: 900;
+  font-size: 12px;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+
+body {
+  margin-bottom: 500px;
+  background-image: linear-gradient(110deg, #eb6570, rgb(228, 217, 73));
+  background-size: 8px, auto;
+  background-attachment: fixed;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  max-height: 20vmin;
+  max-width: 20vmin;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* max-width: 120px; */
+}
+
+.btn {
+  margin-bottom: 10px;
+  margin-top: 30px;
+  padding: 8px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+table {
+  border-right: 2px solid gray;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.day-header {
+  border: 1px solid gray;
+  white-space: nowrap;
+}
+
+.hour-cell:hover > div {
+  background-color: #559 !important;
+  color: white;
+}
+
+.hour-cell {
+  width: 120px;
+  text-align: center;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  height: 30px;
+  padding: 0;
+}
+
+.hour-cell > div {
+height: 100%;
+}
+
+.hour-cell .time {
+padding-top: 8px; /* poor man's vertical centering */
+color: #FFF;
+}
+
+.hour-cell .searching {
+  color: #88d;
+  font-size: 12px;
+  padding-top: 12px; /* poor man's vertical centering */
+}
+
+.hour-cell .result-label {
+font-size: 10px;
+}
+
+.hour-cell .good-results {
+color: #090;
+background: #efffef;
+}
+
+.hour-cell .weak-results {
+color: orange;
+background: #ffffef;
+}
+
+.hour-cell .bad-results {
+color: red;
+background: #ffefef;
+}

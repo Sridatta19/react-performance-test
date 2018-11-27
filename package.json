@@ -1,22 +1,24 @@
 {
-  "name": "angular-react-directive-example",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "webpack-dev-server --progress --colors --port 8080"
-  },
+  "name": "performance",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.4",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "classnames": "^2.2.6",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-scripts": "2.1.1"
   },
-  "devDependencies": {
-    "css-loader": "^0.28.7",
-    "jsx-loader": "^0.13.2",
-    "style-loader": "^0.19.0",
-    "webpack": "^3.9.1",
-    "webpack-dev-server": "^2.9.5"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
-  "author": "Dave Smith",
-  "license": "ISC"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
