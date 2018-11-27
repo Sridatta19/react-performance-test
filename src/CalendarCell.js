@@ -1,9 +1,5 @@
 import React from "react";
-import classNames from "classnames";
-
-function randomMilliseconds() {
-  return Math.floor(Math.random() * 500);
-}
+const CellResults = React.lazy(() => import('./CellResults'));
 
 const PlaceHolder = () => {
   return (
@@ -13,62 +9,34 @@ const PlaceHolder = () => {
   );
 };
 
-const CellResults = ({ options }) => {
-  var classes = classNames({
-    "good-results": options > 3,
-    "weak-results": options > 1 && options <= 3,
-    "bad-results": options >= 0 && options <= 1
-  });
-
-  return (
-    <td className="hour-cell">
-      <div className={classes}>
-        <div>{options}</div>
-        <div className="result-label">results</div>
-      </div>
-    </td>
-  );
-};
-
 export default class Cell extends React.Component {
   state = {
-    isSearching: false,
-    searchResults: undefined
+    isSearching: false
   };
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.searchCells !== this.props.searchCells ||
-      nextState.isSearching !== this.state.isSearching ||
-      (nextState.searchResults.options &&
-        nextState.searchResults.options !== this.state.searchResults.options)
+      nextState.isSearching !== this.state.isSearching
     );
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.searchCells !== this.props.searchCells) {
       this.setState({
-        isSearching: true,
-        searchResults: { options: undefined }
+        isSearching: true
       });
-      setTimeout(() => {
-        this.setState({
-          isSearching: false,
-          searchResults: { options: Math.floor(Math.random() * 5) }
-        });
-      }, randomMilliseconds());
     }
   }
 
   render() {
-    if (this.state.searchResults && this.state.searchResults.options !== undefined) {
-      return <CellResults options={this.state.searchResults.options}/>
-    }
     if (this.state.isSearching) {
-      return <PlaceHolder/>
+      return <React.Suspense fallback={<PlaceHolder/>}>
+        <CellResults />
+      </React.Suspense>
     }
     return (
-      <td className="hour-cell" onClick={this.clicked}>
+      <td className="hour-cell">
         <div className="time">{this.props.hour}:00</div>
       </td>
     );
