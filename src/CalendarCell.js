@@ -1,4 +1,6 @@
 import React from "react";
+import { useState, useEffect } from 'react';
+
 const CellResults = React.lazy(() => import('./CellResults'));
 
 const PlaceHolder = () => {
@@ -9,36 +11,21 @@ const PlaceHolder = () => {
   );
 };
 
-export default class Cell extends React.Component {
-  state = {
-    isSearching: false
-  };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.searchCells !== this.props.searchCells ||
-      nextState.isSearching !== this.state.isSearching
-    );
+const CalendarCell = (props) => {
+  let [isSearching, setSearch] = useState(false);
+  useEffect(() => {
+    if(props.searchCells) setSearch(true)
+  }, [props.searchCells])
+  if (isSearching) {
+    return <React.Suspense fallback={<PlaceHolder />}>
+      <CellResults {...props} />
+    </React.Suspense>
   }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.searchCells !== this.props.searchCells) {
-      this.setState({
-        isSearching: true
-      });
-    }
-  }
-
-  render() {
-    if (this.state.isSearching) {
-      return <React.Suspense fallback={<PlaceHolder/>}>
-        <CellResults />
-      </React.Suspense>
-    }
-    return (
-      <td className="hour-cell">
-        <div className="time">{this.props.hour}:00</div>
-      </td>
-    );
-  }
+  return (
+    <td className="hour-cell">
+      <div className="time">{props.hour}:00</div>
+    </td>
+  );
 }
+
+export default CalendarCell;
